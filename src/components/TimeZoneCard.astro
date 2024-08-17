@@ -1,0 +1,33 @@
+---
+import Card from "./Card/index.astro";
+import {formatTimeForColombia, getCurrentTimeInItaly} from "../libs/helpers";
+---
+
+<script>
+  import { formatTimeForColombia } from "../libs/helpers";
+
+  //let interval: ReturnType<typeof setInterval>;
+
+  function updateClock() {
+    const timeDisplay = document.getElementById("timeDisplay");
+    const now = new Date();
+
+    if (timeDisplay) {
+      timeDisplay.textContent = formatTimeForColombia(now);
+      timeDisplay.setAttribute("datetime", now.toISOString());
+    }
+  }
+
+  setInterval(updateClock, 1000);
+
+</script>
+
+<Card colSpan="lg:col-span-2" rowSpan="md:row-span-2" title="Time zone">
+  <time
+    datetime=""
+    id="timeDisplay"
+    class="text-2xl lg:text-4xl xl:text-5xl xl:whitespace-nowrap w-50 xl:w-100 h-[calc(100%-28px)] flex justify-center items-center"
+  >
+    {formatTimeForColombia(getCurrentTimeInItaly())}
+  </time>
+</Card>

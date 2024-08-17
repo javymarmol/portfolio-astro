@@ -1,0 +1,26 @@
+---
+import Card from "./Card/index.astro";
+---
+
+<Card colSpan="md:col-span-1" rowSpan="md:row-span-4" title="Trabajemos juntos">
+  <div class="h-full text-sm font-light">
+    <address class="flex flex-col">
+      <h1 class="text-gray-500">Email</h1>
+      <a href="mailto:contacto@javymarmol.com" class="hover:text-cyan-500">
+        <p>contacto@javymarmol.com</p>
+      </a>
+    </address>
+    <div class="flex flex-col w-fit mt-2">
+      <h4 class="text-gray-500">Redes Sociales</h4>
+      <ul>
+        <li>
+          <a href={"LINKS.linkedin"} target="_blank" class="hover:text-cyan-500">Linkedin</a>
+        </li>
+        <li>
+          <a href={"LINKS.github"} target="_blank" class="hover:text-cyan-500">Github</a>
+        </li>
+        <li>
+      </ul>
+    </div>
+  </div>
+</Card>

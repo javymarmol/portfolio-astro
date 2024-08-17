@@ -1,0 +1,79 @@
+---
+import Content from "./Content.astro";
+interface Props {
+	title?: string;
+	body?: string;
+	href?: string;
+	rowSpan?: string;
+	colSpan?: string;
+	height?: string;
+}
+
+const { href, title, body, colSpan, rowSpan, height } = Astro.props;
+---
+<div
+	class={`card h-max sm:h-auto group overflow-hidden transform-y-[-40%] bg-neutral-900 shadow-lg rounded-lg p-6 border
+		border-slate-100 hover:border-cyan-500 align-start flex-none
+		${height || "h-full"} 
+		justify-start relative transform perspective-1200 w-full transition duration-75 ease-in-out col-span-1
+		${colSpan || "md:col-span-2"} ${rowSpan || ""}`}
+>
+	{
+		href ? (
+			<a href={href} class="h-full w-full">
+				<!--<Icon-->
+				<!--	name="ri:arrow-right-up-line"-->
+				<!--	class="h-6 float-right group-hover:text-primary-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform ease-in-out duration-100 z-20"-->
+				<!--/>-->
+				<Content title={title} body={body}>
+					<slot />
+				</Content>
+			</a>
+		) :
+		(
+			<Content title={title} body={body}>
+				<slot />
+			</Content>
+		)
+	}
+</div>
+<style>
+	.link-card {
+		list-style: none;
+		display: flex;
+		padding: 1px;
+		background-color: #23262d;
+		background-image: none;
+		background-size: 400%;
+		border-radius: 7px;
+		background-position: 100%;
+		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+	}
+	.link-card > a {
+		width: 100%;
+		text-decoration: none;
+		line-height: 1.4;
+		padding: calc(1.5rem - 1px);
+		border-radius: 8px;
+		color: white;
+		background-color: #23262d;
+		opacity: 0.8;
+	}
+	h2 {
+		margin: 0;
+		font-size: 1.25rem;
+		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+	p {
+		margin-top: 0.5rem;
+		margin-bottom: 0;
+	}
+	.link-card:is(:hover, :focus-within) {
+		background-position: 0;
+		//background-image: var(--accent-gradient);
+	}
+	.link-card:is(:hover, :focus-within) h2 {
+		//color: rgb(var(--accent-light));
+	}
+</style>
