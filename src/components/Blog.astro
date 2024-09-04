@@ -1,0 +1,33 @@
+---
+import Card from "./Card/index.astro";
+let posts = [
+    {
+        title: "Now",
+        description: "Currently working as freelancer",
+        link: "https://sive.rs/nowff",
+        linkText: "what's that ?",
+    },
+    {
+        title: "Time zone",
+        description: "Currently in Colombia",
+        link: "https://sive.rs/nowff",
+        linkText: "what's that ?",
+    },
+];
+---
+
+<Card colSpan="md:col-span-1" rowSpan="md:row-span-2">
+    <div class="mb-2 flex w-full items-start justify-between text-sm">
+        <div class="flex flex-col">
+            {
+                posts.map((post) => (
+                <>
+                    <h2>{post.title}</h2>
+                    <p>{post.description}</p>
+                </>
+                )
+            )
+            }
+        </div>
+    </div>
+</Card>

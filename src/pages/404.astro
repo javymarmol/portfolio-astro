@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Image from "astro/components/Image.astro";
+---
+<Layout title="Heyner Javier Marmol - @javymarmol" description="Full Stack and Android Developer" image="">
+        <div class="grid h-screen place-content-center px-4">
+            <div class="text-center">
+
+                <Image
+
+                        width="300"
+                        height="300"
+                        src="/me.webp"
+                        loading={"eager"}
+                        class="w-auto max-h-[300px] select-none absolute right-[-110px] bottom-[-20px] z-[-1] opacity-50 md:opacity-100 md:relative md:right-auto md:bottom-auto md:z-auto pointer-events-none"
+                        alt="memoji of javymarmol"
+                />
+                <h1 class="text-9xl font-black text-gray-200">404</h1>
+                <p class="text-2xl font-bold tracking-tight text-gray-300 sm:text-4xl">Uh-oh!</p>
+                <p class="mt-4 text-gray-500">We can't find that page.</p>
+                <a
+                        href="/"
+                        class="mt-6 inline-block rounded bg-cyan-500 px-5 py-3 text-sm font-medium text-white
+                 hover:bg-cyan-700 focus:outline-none focus:ring"
+                >
+                    Go Back Home
+                </a>
+            </div>
+        </div>
+</Layout>

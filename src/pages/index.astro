@@ -6,7 +6,8 @@ import AboutMe from "../components/AboutMe.astro";
 import Now from "../components/Now.astro";
 import TimeZoneCard from "../components/TimeZoneCard.astro";
 import Contacts from "../components/Contacts.astro";
-import Blog from "../components/Blog.astro";
+import Blog from "../components/Blog.vue";
+const fullYear = new Date().getFullYear();
 ---
 
 <Layout title="Heyner Javier Marmol - @javymarmol" description="Full Stack and Android Developer" image="">
@@ -14,35 +15,16 @@ import Blog from "../components/Blog.astro";
 		class="text-white m-auto p-2 grid gap-2 max-w-6xl overflow-hidden relative w-full sm:p-4 sm:gap-2
 		 md:grid-cols-2 md:gap-3 md:p-6 lg:h-screen lg:grid-rows-8 lg:grid-cols-4 lg:gap-4 lg:max-h-[800px]"
 	>
-		<IntroCard
-			href="https://docs.astro.build/"
-			title="Documentation"
-			body="Learn how Astro works and explore the official API docs."
-		/>
+		<IntroCard/>
 		<AboutMe />
 		<Contacts />
 		<TimeZoneCard />
-		<Blog />
 		<Now />
-		<Card
-			href="https://docs.astro.build/"
-			title="Documentation"
-			body="Learn how Astro works and explore the official API docs."
-		/>
-		<Card
-			href="https://astro.build/integrations/"
-			title="Integrations"
-			body="Supercharge your project with new frameworks and libraries."
-		/>
-		<!--<Card
-			href="https://astro.build/themes/"
-			title="Themes"
-			body="Explore a galaxy of community-built starter themes."
-		/>
-		<Card
-			href="https://astro.build/chat/"
-			title="Community"
-			body="Come say hi to our amazing Discord community. ❤️"
-		/>-->
+		<Blog rowSpan="md:row-span-2" />
+		<Card colSpan="md:col-span-3 lg:col-span-1" rowSpan="md:row-span-1" >
+			<p class="text-xs text-center">
+				© {fullYear} · Hecho con mucho ♥️.
+			</p>
+		</Card>
 	</main>
 </Layout>

@@ -24,9 +24,9 @@ import {formatTimeForColombia, getCurrentTimeInItaly} from "../libs/helpers";
 
 <Card colSpan="lg:col-span-2" rowSpan="md:row-span-2" title="Time zone">
   <time
-    datetime=""
+    datetime={getCurrentTimeInItaly().toISOString()}
     id="timeDisplay"
-    class="text-2xl lg:text-4xl xl:text-5xl xl:whitespace-nowrap w-50 xl:w-100 h-[calc(100%-28px)] flex justify-center items-center"
+    class="text-2xl xl:text-5xl xl:whitespace-nowrap w-50 xl:w-100 h-[calc(100%-28px)] flex justify-center items-center"
   >
     {formatTimeForColombia(getCurrentTimeInItaly())}
   </time>
