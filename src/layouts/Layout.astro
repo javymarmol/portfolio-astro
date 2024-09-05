@@ -38,18 +38,26 @@ const schema = {
 <html lang="es">
 <head>
 	<!-- Google tag (gtag.js) -->
-	<script async is:inline src="https://www.googletagmanager.com/gtag/js?id=G-YTMEDE93ZC"></script>
-	<script>
+	<script src="https://www.googletagmanager.com/gtag/js?id=G-YTMEDE93ZC"></script>
+	<script is:inline>
 		window.dataLayer = window.dataLayer || [];
-		const gtag: Gtag.Gtag = function () {window.dataLayer.push(arguments);};
-		//function gtag(){window.dataLayer.push(arguments);}
+		//const gtag: Gtag.Gtag = function () {window.dataLayer.push(arguments);};
+		function gtag(){window.dataLayer.push(arguments);}
 		gtag('js', new Date());
 
 		gtag('config', 'G-YTMEDE93ZC');
 	</script>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width" />
-	<link rel="icon" type="image/svg" href="https://blog.javymarmol.com/content/images/size/w256h256/format/png/2023/03/00-1.svg" />
+	<!--Favicon tags-->
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+
 	<meta name="generator" content={Astro.generator} />
 
 	<!-- Basic meta tags for SEO -->
