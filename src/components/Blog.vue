@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {extract} from '@extractus/feed-extractor'
+import { extractFromXml} from '@extractus/feed-extractor'
 
 interface Props {
   height?: string
@@ -9,10 +9,11 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const posts = await extract('https://blog.javymarmol.com/rss/')
-    .then((data) => {
-      return data
-    })
+const url = 'https://blog.javymarmol.com/rss/'
+const res = await fetch(url)
+const xml = await res.text()
+
+const posts = extractFromXml(xml).entries?.slice(0, 3)
 
 
 </script>
@@ -30,13 +31,13 @@ const posts = await extract('https://blog.javymarmol.com/rss/')
        group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform ease-in-out duration-100 z-20"></span>
       <span class="sr-only">Blog</span>
     </a>
-    <a :href="entry.link" v-for="entry in posts.entries?.slice(0,3)"
-       :key="entry.link" target="_blank" class="hover:text-cyan-300 align-start
+    <a :href="post.link" v-if="posts" v-for="post in posts.slice(0,3)"
+       :key="post.link" target="_blank" class="hover:text-cyan-300 align-start
      flex-none  justify-start relative transform cursor-pointer
        perspective-1200 w-full transition duration-75 ease-in-out">
       <div>
-        <h3>{{entry.title}}</h3>
-        <p class="text-sm font-light line-clamp-2">{{entry.description}}</p>
+        <h3>{{post.title}}</h3>
+        <p class="text-sm font-light line-clamp-2">{{post.description}}</p>
       </div>
     </a>
   </div>
