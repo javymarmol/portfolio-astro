@@ -2,6 +2,7 @@
 import Card from "./Card/index.astro";
 import Button from "./Button.astro";
 import Image from "astro/components/Image.astro";
+import memoji from "../../public/me.webp";
 interface Props {
 	title?: string;
 	body?: string;
@@ -45,11 +46,10 @@ interface Props {
 			</div>
 		</div>
 		<Image
-
 			width="300"
 			height="300"
-			src="/me.webp"
-			loading={"eager"}
+			src={memoji}
+			loading="eager"
 			class="w-auto max-h-[300px] select-none absolute right-[-110px] bottom-[-20px] z-[-1] opacity-30 md:opacity-100 md:relative md:right-auto md:bottom-auto md:z-auto pointer-events-none"
 			alt="memoji of javymarmol"
 		/>
