@@ -26,3 +26,7 @@ pnpm-debug.log*
 
 # npm package manager
 package-lock.json
+
+# agent settings
+.atl/
+

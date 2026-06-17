@@ -1,35 +1,41 @@
 ---
 import Card from "./Card/index.astro";
+import { useTranslations, type Locale } from "../libs/i18n";
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
-<Card colSpan="md:col-span-1" rowSpan="md:row-span-6" title="Acerca de mi">
+<Card colSpan="md:col-span-1" rowSpan="md:row-span-6" title={t('about_me_title')}>
   <div class="flex flex-col gap-2">
     <div class="text-sm font-light">
       <p>
-        Soy un full stack software developer de Colombia 🇨🇴.
+        {t('about_me_desc_1')}
       </p>
       <p>
-        Como freelance, me he especializado en desarrollo de aplicaciones Android y web.
+        {t('about_me_desc_2')}
       </p>
     </div>
 
     <div class="text-sm font-light">
     <p>
-      Dentro de los stack que utilizo se encuentran las siguientes tecnologías:
+      {t('about_me_stack')}
     </p>
-    <h3>Backend</h3>
+    <h3>{t('backend')}</h3>
     <ul class="list-disc list-inside">
       <li>Laravel</li>
       <li>NodeJS</li>
       <li>.Net Core</li>
     </ul>
-    <h3>Frontend</h3>
+    <h3>{t('frontend')}</h3>
     <ul class="list-disc list-inside">
       <li>React</li>
       <li>Vue</li>
     </ul>
 
-    <h3>Android</h3>
+    <h3>{t('android')}</h3>
     <ul class="list-disc list-inside">
       <li>Kotlin</li>
       <li>Java</li>

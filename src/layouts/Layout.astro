@@ -1,15 +1,20 @@
 ---
+import { type Locale, defaultLang } from '../libs/i18n';
+
 interface Props {
 	title: string;
 	description: string;
 	image: string;
+	lang?: Locale;
 }
 
 // Supports weights 300-900
 import '@fontsource-variable/figtree';
+import '../styles/base.css';
 
-const { title, description, image } = Astro.props;
+const { title, description, image, lang = defaultLang } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogLocale = lang === 'es' ? 'es_ES' : 'en_US';
 const schema = {
 	"@context": "https://schema.org",
 	"@type": "Person",
@@ -38,7 +43,7 @@ const schema = {
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
 <head>
 	<!-- Google tag (gtag.js) -->
 	<script src="https://www.googletagmanager.com/gtag/js?id=G-YTMEDE93ZC"></script>
@@ -67,12 +72,15 @@ const schema = {
 	<title>{title}</title>
 	<meta name="description" content={description} />
 	<link rel="canonical" href={canonicalURL} />
+	<link rel="alternate" hreflang="en" href={new URL('/en/', Astro.site)} />
+	<link rel="alternate" hreflang="es" href={new URL('/es/', Astro.site)} />
+	<link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
 
 	<!-- Basic robots meta tag -->
 	<meta name="robots" content="/favicon/sitemap-index.xml" />
 
 	<!-- Basic OG tags for sharing your website's content on platforms like Facebook and LinkedIn -->
-	<meta property="og:locale" content="es_ES" />
+	<meta property="og:locale" content={ogLocale} />
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
 	<meta property="og:type" content="website" />

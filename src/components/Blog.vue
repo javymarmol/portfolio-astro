@@ -5,17 +5,27 @@ interface Props {
   height?: string
   colSpan?: string
   rowSpan?: string
+  lang?: 'en' | 'es'
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  lang: 'en'
+})
 
 const url = 'https://blog.javymarmol.com/rss/'
-const res = await fetch(url)
-const xml = await res.text()
+let posts = []
 
-const posts = extractFromXml(xml).entries?.slice(0, 3)
-
-
+try {
+  const res = await fetch(url)
+  if (res.ok) {
+    const xml = await res.text()
+    posts = extractFromXml(xml).entries?.slice(0, 3) || []
+  } else {
+    console.warn(`Failed to fetch RSS feed, status: ${res.status}`)
+  }
+} catch (error) {
+  console.error('Failed to fetch or parse RSS feed:', error)
+}
 </script>
 
 <template>
@@ -27,9 +37,10 @@ const posts = extractFromXml(xml).entries?.slice(0, 3)
   >
     <a href="https://blog.javymarmol.com" target="_blank" class="w-full flex justify-between  hover:text-cyan-500">
       <h2 class="text-xl font-bold m-0 z-20">Blog</h2>
-      <span class="iconify ri--arrow-right-up-line h-6 float-right group-hover:text-primary-500
+      <span class="icon-[ri--arrow-right-up-line] h-6 float-right
+       group-hover:text-primary-500
        group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform ease-in-out duration-100 z-20"></span>
-      <span class="sr-only">Blog</span>
+      <span class="sr-only">{{ props.lang === 'es' ? 'Ir al blog' : 'Go to blog' }}</span>
     </a>
     <a :href="post.link" v-if="posts" v-for="post in posts.slice(0,3)"
        :key="post.link" target="_blank" class="hover:text-cyan-300 align-start
