@@ -1,14 +1,18 @@
 import {defineConfig} from 'astro/config';
-import tailwind from "@astrojs/tailwind";
-
+import tailwindcss from "@tailwindcss/vite";
 import vue from "@astrojs/vue";
-
 import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'es'],
+    routing: {
+      prefixDefaultLocale: true,
+    },
+  },
   integrations: [
-    tailwind(),
     vue({
       devtools: {
         launchEditor: "webstorm"
@@ -16,6 +20,10 @@ export default defineConfig({
     }),
     sitemap({
       customPages: ['https://blog.javymarmol.com'],
-    })],
+    })
+  ],
+  vite: {
+    plugins: [tailwindcss()]
+  },
   site: "https://javymarmol.com",
 });

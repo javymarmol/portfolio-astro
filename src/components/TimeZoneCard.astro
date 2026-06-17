@@ -1,6 +1,12 @@
 ---
 import Card from "./Card/index.astro";
 import {formatTimeForColombia, getCurrentTimeInItaly} from "../libs/helpers";
+import { useTranslations, type Locale } from "../libs/i18n";
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <script>
@@ -22,7 +28,7 @@ import {formatTimeForColombia, getCurrentTimeInItaly} from "../libs/helpers";
 
 </script>
 
-<Card colSpan="lg:col-span-2" rowSpan="md:row-span-2" title="Time zone">
+<Card colSpan="lg:col-span-2" rowSpan="md:row-span-2" title={t('timezone_title')}>
   <time
     datetime={getCurrentTimeInItaly().toISOString()}
     id="timeDisplay"

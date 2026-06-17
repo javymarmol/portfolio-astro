@@ -1,3 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@iconify/tailwind4";
+
+@theme {
+  --font-sans: "Figtree Variable", var(--font-sans);
+}

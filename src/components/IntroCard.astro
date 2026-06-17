@@ -3,6 +3,7 @@ import Card from "./Card/index.astro";
 import Button from "./Button.astro";
 import Image from "astro/components/Image.astro";
 import memoji from "../../public/me.webp";
+import { useTranslations, type Locale } from "../libs/i18n";
 interface Props {
 	title?: string;
 	body?: string;
@@ -10,36 +11,37 @@ interface Props {
 	rowSpan?: string;
 	colSpan?: string;
 	height?: string;
+	lang: Locale;
 }
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <Card colSpan="md:col-span-3" rowSpan="md:row-span-4">
 	<div class="flex w-full h-full">
 		<div class="flex flex-col justify-between md:max-h-[300px] gap-4">
 			<div class="flex flex-col h-full">
-				<h6 class="text-sm font-light m-0 text-gray-400">Bienvenido</h6>
-				<p class="m-0 font-light text-xl">
-					Hola, Soy <b class="font-bold">Heyner Javier Marmol</b>, full stack
-					y android developer apasionado por la tecnología y la programación, siempre
-					buscando nuevos retos y mejorar mis habilidades.
+				<h6 class="text-sm font-light m-0 text-gray-400">{t('welcome')}</h6>
+				<p class="m-0 font-light text-xl" set:html={t('intro')}>
 				</p>
 			</div>
 			<div class="flex gap-4">
 				<a href="https://github.com/javymarmol" aria-label="github profile" target="_blank">
 					<Button aria-label="github profile">
-						<span class="iconify ri--github-fill w-6 h-6"></span>
+						<span class="icon-[ri--github-fill] w-6 h-6"></span>
 						<span class="sr-only">GitHub Profile</span>
 					</Button>
 				</a>
 				<a href="https://www.linkedin.com/in/javymarmol" aria-label="linkedin profile" target="_blank">
 					<Button aria-label="linkedin profile">
-						<span class="iconify ri--linkedin-box-fill h-6 w-6"></span>
+						<span class="icon-[ri--linkedin-box-fill] h-6 w-6"></span>
 						<span class="sr-only">Linkedin Profile</span>
 					</Button>
 				</a>
 				<a href="mailto:contacto@javymarmol.com" aria-label="email" target="_blank">
 					<Button aria-label="linkedin profile">
-						<span class="iconify ri--mail-line h-6 w-6"></span>
+						<span class="icon-[ri--mail-line] h-6 w-6"></span>
 						<span class="sr-only">Email</span>
 					</Button>
 				</a>

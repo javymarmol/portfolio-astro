@@ -1,8 +1,14 @@
 ---
 import Card from "./Card/index.astro";
+import { useTranslations, type Locale } from "../libs/i18n";
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
-<Card colSpan="md:col-span-1" rowSpan="md:row-span-2 lg:row-span-3" title="Trabajemos juntos">
+<Card colSpan="md:col-span-1" rowSpan="md:row-span-2 lg:row-span-3" title={t('contacts_title')}>
   <div class="h-full font-light">
     <address class="flex flex-col">
       <h3 class="text-gray-400 font-bold">Email</h3>
@@ -11,7 +17,7 @@ import Card from "./Card/index.astro";
       </a>
     </address>
     <div class="flex flex-col w-fit mt-2">
-      <h3 class="text-gray-400 font-bold">Redes Sociales</h3>
+      <h3 class="text-gray-400 font-bold">{t('socials')}</h3>
       <ul class="flex flex-col gap-1 text-sm">
         <li>
           <a href="https://github.com/javymarmol" target="_blank" class="hover:text-cyan-500">
@@ -23,7 +29,6 @@ import Card from "./Card/index.astro";
             <p>Linkedin</p>
           </a>
         </li>
-        <li>
       </ul>
     </div>
   </div>

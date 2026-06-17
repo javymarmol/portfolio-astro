@@ -1,30 +1,26 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card/index.astro';
-import IntroCard from "../components/IntroCard.astro";
-import AboutMe from "../components/AboutMe.astro";
-import Now from "../components/Now.astro";
-import TimeZoneCard from "../components/TimeZoneCard.astro";
-import Contacts from "../components/Contacts.astro";
-import Blog from "../components/Blog.vue";
-const fullYear = new Date().getFullYear();
+// Client-side language detector and redirector
 ---
-
-<Layout title="Heyner Javier Marmol - @javymarmol" description="Full Stack and Android Developer" image="">
-	<main
-		class="text-white m-auto p-2 grid gap-2 max-w-6xl overflow-hidden relative w-full sm:p-4 sm:gap-2
-		 md:grid-cols-2 md:gap-3 md:p-6 lg:h-screen lg:grid-rows-8 lg:grid-cols-4 lg:gap-4 lg:max-h-[800px]"
-	>
-		<IntroCard/>
-		<AboutMe />
-		<Contacts />
-		<TimeZoneCard />
-		<Now />
-		<Blog rowSpan="md:row-span-2" client:load/>
-		<Card colSpan="md:col-span-3 lg:col-span-1" rowSpan="md:row-span-1" >
-			<p class="text-xs text-center">
-				© {fullYear} · Hecho con mucho ♥️.
-			</p>
-		</Card>
-	</main>
-</Layout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0;url=/en/" />
+    <script is:inline>
+      try {
+        const userLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+        if (userLang.startsWith('es')) {
+          window.location.href = '/es/';
+        } else {
+          window.location.href = '/en/';
+        }
+      } catch (e) {
+        window.location.href = '/en/';
+      }
+    </script>
+    <title>Redirecting...</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href="/en/">English</a> / <a href="/es/">Español</a>...</p>
+  </body>
+</html>
