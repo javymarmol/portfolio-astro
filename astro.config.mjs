@@ -14,9 +14,7 @@ export default defineConfig({
   },
   integrations: [
     vue({
-      devtools: {
-        launchEditor: "webstorm"
-      }
+      devtools: false
     }),
     sitemap({
       customPages: ['https://blog.javymarmol.com'],
@@ -26,4 +24,7 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
   site: "https://javymarmol.com",
+  devToolbar: {
+    enabled: true
+  }
 });
